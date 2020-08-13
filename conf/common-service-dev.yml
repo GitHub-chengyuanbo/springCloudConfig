@@ -1,7 +1,4 @@
 spring:
-  profiles:
-    active: dev
-    include: swagger
   devtools:
     restart:
       enabled: true
@@ -57,21 +54,3 @@ management:
 file:
   dir: D:/Files
   base-url: http://192.168.3.78:9000/common-service/api/uploadFileController/getFileStreamById
-eureka:
-  instance:
-    hostname: common-service
-    prefer-ip-address: true
-    lease-expiration-duration-in-seconds: 10
-    lease-renewal-interval-in-seconds: 5
-  client:
-    registerWithEureka: true
-    fetchRegistry: true
-    serviceUrl:
-      defaultZone: http://localhost:8761/eureka/
-    healthcheck:
-      enabled: true
-    registry-fetch-interval-seconds: 5
-server:
-  port: 9004
-  tomcat:
-    basedir: /tomcat/tmp
