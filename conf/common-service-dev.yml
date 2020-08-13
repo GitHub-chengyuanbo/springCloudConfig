@@ -14,7 +14,7 @@ spring:
     url: jdbc:mysql://192.168.3.2:3506/yunche_dev?useUnicode=true&characterEncoding=utf8&useSSL=false&rewriteBatchedStatements=true&serverTimezone=GMT%2b8
     name:
     username: root
-    password: 111111
+    password: 123456
     hikari:
       data-source-properties:
         cachePrepStmts: true
