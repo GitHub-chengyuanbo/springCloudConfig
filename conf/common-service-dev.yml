@@ -11,7 +11,7 @@ spring:
     serialization.indent_output: true
   datasource:
     type: com.zaxxer.hikari.HikariDataSource
-    url: jdbc:mysql://192.168.3.2:3506/yunche_dev?useUnicode=true&characterEncoding=utf8&useSSL=false&rewriteBatchedStatements=true&rewriteBatchedStatements=true&serverTimezone=GMT%2b8
+    url: jdbc:mysql://192.168.3.2:3506/yunche_dev?useUnicode=true&characterEncoding=utf8&useSSL=false&rewriteBatchedStatements=true&serverTimezone=GMT%2b8
     name:
     username: root
     password: 123456
@@ -43,14 +43,7 @@ spring:
     properties:
       hibernate.jdbc.batch_size: 250
       hibernate.jdbc.time_zone: Asia/Shanghai
-      hibernate.enable_lazy_load_no_trans: true
-  data:
-    elasticsearch:
-      cluster-nodes: 192.168.3.78:9300
-      cluster-name: elasticsearch
-  elasticsearch:
-    rest:
-      uris: ["http://192.168.3.78:9200"]
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
 management:
   endpoints:
     web:
@@ -61,9 +54,12 @@ management:
       enabled: true
     health:
       show-details: always
+file:
+  dir: D:/Files
+  base-url: http://192.168.3.78:9000/common-service/api/uploadFileController/getFileStreamById
 eureka:
   instance:
-    hostname: domain-service
+    hostname: common-service
     prefer-ip-address: true
     lease-expiration-duration-in-seconds: 10
     lease-renewal-interval-in-seconds: 5
@@ -76,12 +72,6 @@ eureka:
       enabled: true
     registry-fetch-interval-seconds: 5
 server:
-  port: 9003
-#合同下载pdf路径
-pdffile:
-  dir: D:/Files/PDF
-  base-url: http://localhost:9000/domain-service/api/templateController/getContractInfoPdfById
-#还款申请API接口,收款账户动态获取API接口
-repaymentApplyApi:
-  applyUrl: http://25003uc531.qicp.vip/due/collection/saveRepaymentRecord
-  receiveAccountUrl: http://25003uc531.qicp.vip/due/collection/listGatheringAccountConfigInfo
+  port: 9004
+  tomcat:
+    basedir: /tomcat/tmp
