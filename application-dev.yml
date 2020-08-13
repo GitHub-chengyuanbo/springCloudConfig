@@ -1,0 +1,87 @@
+spring:
+  profiles:
+    active: dev
+    include: swagger
+  devtools:
+    restart:
+      enabled: true
+    livereload:
+      enabled: false # we use gulp + BrowserSync for livereload
+  jackson:
+    serialization.indent_output: true
+  datasource:
+    type: com.zaxxer.hikari.HikariDataSource
+    url: jdbc:mysql://192.168.3.2:3506/yunche_dev?useUnicode=true&characterEncoding=utf8&useSSL=false&rewriteBatchedStatements=true&rewriteBatchedStatements=true&serverTimezone=GMT%2b8
+    name:
+    username: root
+    password: 123456
+    hikari:
+      data-source-properties:
+        cachePrepStmts: true
+        prepStmtCacheSize: 250
+        prepStmtCacheSqlLimit: 2048
+        useServerPrepStmts: true
+      maximumPoolSize: 50
+  rabbitmq:
+    username: yunchedev
+    password: 123456
+    host: 192.168.3.2
+    virtual-host: yunchedev
+    port: 5672
+  redis:
+    database: 14
+    host: 192.168.3.2
+    port: 6379
+    password: redis123456
+  boot:
+    admin:
+      client:
+        url: http://localhost:8762
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate.jdbc.batch_size: 250
+      hibernate.jdbc.time_zone: Asia/Shanghai
+      hibernate.enable_lazy_load_no_trans: true
+  data:
+    elasticsearch:
+      cluster-nodes: 192.168.3.78:9300
+      cluster-name: elasticsearch
+  elasticsearch:
+    rest:
+      uris: ["http://192.168.3.78:9200"]
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    shutdown:
+      enabled: true
+    health:
+      show-details: always
+eureka:
+  instance:
+    hostname: domain-service
+    prefer-ip-address: true
+    lease-expiration-duration-in-seconds: 10
+    lease-renewal-interval-in-seconds: 5
+  client:
+    registerWithEureka: true
+    fetchRegistry: true
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+    healthcheck:
+      enabled: true
+    registry-fetch-interval-seconds: 5
+server:
+  port: 9003
+#合同下载pdf路径
+pdffile:
+  dir: D:/Files/PDF
+  base-url: http://localhost:9000/domain-service/api/templateController/getContractInfoPdfById
+#还款申请API接口,收款账户动态获取API接口
+repaymentApplyApi:
+  applyUrl: http://25003uc531.qicp.vip/due/collection/saveRepaymentRecord
+  receiveAccountUrl: http://25003uc531.qicp.vip/due/collection/listGatheringAccountConfigInfo
