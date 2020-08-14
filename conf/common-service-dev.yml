@@ -1,4 +1,7 @@
 spring:
+  profiles:
+    active: dev
+    include: swagger
   devtools:
     restart:
       enabled: true
@@ -41,6 +44,19 @@ spring:
       hibernate.jdbc.batch_size: 250
       hibernate.jdbc.time_zone: Asia/Shanghai
     database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    shutdown:
+      enabled: true
+    health:
+      show-details: always
+file:
+  dir: D:/Files
+  base-url: http://192.168.3.78:9000/common-service/api/uploadFileController/getFileStreamById
 eureka:
   instance:
     hostname: common-service
@@ -59,16 +75,3 @@ server:
   port: 9004
   tomcat:
     basedir: /tomcat/tmp
-management:
-  endpoints:
-    web:
-      exposure:
-        include: "*"
-  endpoint:
-    shutdown:
-      enabled: true
-    health:
-      show-details: always
-file:
-  dir: D:/Files
-  base-url: http://192.168.3.78:9000/common-service/api/uploadFileController/getFileStreamById
